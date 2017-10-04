@@ -58,6 +58,12 @@ if [ "$EXTRESOLUTION" == "3840x2160" ]; then
 #  wop $ICONBOX_ID move 2388 1820
 #  wop $PAGER_ID size 624 234
 #  wop $PAGER_ID move 1870 1916
+  wop $THUNDERBIRD_ID size 3838 2132
+  wop $THUNDERBIRD_ID move 2558 0
+  wop $THUNDERBIRD_ID area 0 0
+  wop $FIREFOX_ID size 3838 2132
+  wop $FIREFOX_ID move 2558 0
+  wop $FIREFOX_ID area 1 0
 else
 	nmcli radio wifi on
   xrandr --output $INTDISPLAY --mode 3840x2160 --scale 1x1
@@ -74,11 +80,11 @@ else
   wop $ICONBOX_ID move 2388 1177
   wop $PAGER_ID size 273 156
   wop $PAGER_ID move 2221 1273
-  wop $THUNDERBIRD_ID move 0 0
   wop $THUNDERBIRD_ID size 2516 1411
+  wop $THUNDERBIRD_ID move 0 0
   wop $THUNDERBIRD_ID area 0 0
-  wop $FIREFOX_ID move 0 0
   wop $FIREFOX_ID size 2516 1411
+  wop $FIREFOX_ID move 0 0
   wop $FIREFOX_ID area 1 0
 fi
 
