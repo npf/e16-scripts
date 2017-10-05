@@ -46,14 +46,15 @@ xset -b
 if [ "$EXTRESOLUTION" == "3840x2160" ]; then
   nmcli radio wifi off
   xrandr --output $INTDISPLAY --mode 3840x2160 --scale 1x1
+  xrandr --output $INTDISPLAY --mode 3840x2160 --scale 0.666x0.666 --pos 0x0
   xrandr --output $INTDISPLAY --mode 3840x2160 --scale 0.666x0.666 --pos 0x721 --output $EXTDISPLAY --mode 3840x2160 --scale 1x1 --pos 2558x0
-	sleep 5
+	sleep 2
   eesh "restart" 
   get_eesh_windows_id
   wop $GKRELLM_ID move 2386 718
-  wop $ICONBOX_ID move 2388 1877
+  wop $ICONBOX_ID move 2388 1843
   wop $PAGER_ID size 630 174
-  wop $PAGER_ID move 1864 1976
+  wop $PAGER_ID move 1864 1937
 #  wop $ICONBOX_ID move 2388 1820
 #  wop $PAGER_ID size 624 234
 #  wop $PAGER_ID move 1870 1916
@@ -71,7 +72,7 @@ else
   else
     xrandr --output $INTDISPLAY --mode 3840x2160 --scale 0.666x0.666 --pos 0x0
   fi
-	sleep 5
+	sleep 2
 	eesh "restart" 
   get_eesh_windows_id
   wop $GKRELLM_ID move 2386 0
