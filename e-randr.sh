@@ -58,9 +58,10 @@ xset -b
 if [ "$EXTRESOLUTION" == "3840x2160" ]; then
   nmcli radio wifi off
   if [ "$XRANDR" != "no" ]; then
-    xrandr --output $INTDISPLAY --mode 3840x2160 --scale 1x1
-    xrandr --output $INTDISPLAY --mode 3840x2160 --scale 0.666x0.666 --pos 0x0
-    xrandr --output $INTDISPLAY --mode 3840x2160 --scale 0.666x0.666 --pos 0x721 --output $EXTDISPLAY --mode 3840x2160 --scale 1x1 --pos 2558x0
+    #xrandr --output $INTDISPLAY --mode 3840x2160 --scale 1x1
+    #xrandr --output $INTDISPLAY --mode 3840x2160 --scale 0.666x0.666 --pos 0x0
+    #xrandr --output $INTDISPLAY --mode 3840x2160 --scale 0.666x0.666 --pos 0x721 --output $EXTDISPLAY --mode 3840x2160 --scale 1x1 --pos 2558x0
+    xrandr --output $INTDISPLAY --mode 2560x1440 --scale 1x1 --pos 0x720 --output $EXTDISPLAY --mode 3840x2160 --scale 1x1 --pos 2560x0
   	sleep 2
   fi
   eesh "restart" 
@@ -88,11 +89,13 @@ if [ "$EXTRESOLUTION" == "3840x2160" ]; then
 else
 	nmcli radio wifi on
   if [ "$XRANDR" != "no" ]; then
-    xrandr --output $INTDISPLAY --mode 3840x2160 --scale 1x1
-    xrandr --output $INTDISPLAY --mode 3840x2160 --scale 0.666x0.666 --pos 0x0
+    #xrandr --output $INTDISPLAY --mode 3840x2160 --scale 1x1
+    #xrandr --output $INTDISPLAY --mode 3840x2160 --scale 0.666x0.666 --pos 0x0
+    xrandr --output $INTDISPLAY --mode 2560x1440 --scale 1x1 --pos 0x0
     if [ -n "$EXTRESOLUTION" ]; then
       # configure the external display right side, but will not change the position of the application windows
-      xrandr --output $INTDISPLAY --mode 3840x2160 --scale 0.666x0.666 --pos 0x0 --output $EXTDISPLAY --mode $EXTRESOLUTION --scale 1x1 --pos 2558x0
+      #xrandr --output $INTDISPLAY --mode 3840x2160 --scale 0.666x0.666 --pos 0x0 --output $EXTDISPLAY --mode $EXTRESOLUTION --scale 1x1 --pos 2558x0
+      xrandr --output $INTDISPLAY --mode 2560x1440 --scale 1x1 --pos 0x0 --output $EXTDISPLAY --mode $EXTRESOLUTION --scale 1x1 --pos 2560x0
     fi
 	  sleep 2
   fi
