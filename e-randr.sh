@@ -17,6 +17,7 @@ get_eesh_windows_id() {
   GKRELLM_ID="id:$(eesh "wl" | grep "^0x[[:alnum:]]\+ : gkrellm$" | cut -d\  -f1)"
   THUNDERBIRD_ID="id:$(eesh "wl" | grep "^0x[[:alnum:]]\+ : .\+ - Mozilla Thunderbird$" | cut -d\  -f1 | head -n 1)"
   FIREFOX_ID="id:$(eesh "wl" | grep "^0x[[:alnum:]]\+ : .\+ - Mozilla Firefox$" | cut -d\  -f1 | head -n 1)"
+  MATTERMOST_ID="id:$(eesh wl | grep "^0x[[:alnum:]]\+ : .*Mattermost$" | cut -d\  -f1 | head -n 1)"
   PIDGIN_BUDDYLIST_ID="id:$(eesh "wl" | grep "^0x[[:alnum:]]\+ : Buddy List$" | cut -d\  -f1 | head -n 1)"
 }
 
@@ -86,6 +87,10 @@ if [ "$EXTRESOLUTION" == "3840x2160" ]; then
   wop $PIDGIN_BUDDYLIST_ID size 311 962
   wop $PIDGIN_BUDDYLIST_ID move 2073 721
   wop $PIDGIN_BUDDYLIST_ID area 0 0
+  wop $MATTERMOST_ID size 3800 2132
+  wop $MATTERMOST_ID move 2558 0
+  wop $MATTERMOST_ID toggle_size
+  wop $MATTERMOST_ID area 2 0
 else
 	nmcli radio wifi on
   if [ "$XRANDR" != "no" ]; then
@@ -111,6 +116,9 @@ else
   wop $FIREFOX_ID size 2516 1411
   wop $FIREFOX_ID move 0 0
   wop $FIREFOX_ID area 1 0
+  wop $MATTERMOST_ID size 2516 1411
+  wop $MATTERMOST_ID move 0 0
+  wop $MATTERMOST_ID area 2 0
 fi
 
 exit 0
