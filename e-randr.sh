@@ -12,13 +12,12 @@ EXTDISPLAY=$(xrandr | grep " connected" | grep -v -e "^$INTDISPLAY\s" | cut -f1 
 
 get_eesh_windows_id() {
   sleep 5
-  PAGER_ID="id:$(eesh "wl" | grep "^0x[[:alnum:]]\+ : Pager-0$" | cut -d\  -f1)"
-  ICONBOX_ID="id:$(eesh "wl" | grep "^0x[[:alnum:]]\+ : Iconbox$" | cut -d\  -f1)"
-  GKRELLM_ID="id:$(eesh "wl" | grep "^0x[[:alnum:]]\+ : gkrellm$" | cut -d\  -f1)"
-  THUNDERBIRD_ID="id:$(eesh "wl" | grep "^0x[[:alnum:]]\+ : .\+ - Mozilla Thunderbird$" | cut -d\  -f1 | head -n 1)"
-  FIREFOX_ID="id:$(eesh "wl" | grep "^0x[[:alnum:]]\+ : .\+ - Mozilla Firefox$" | cut -d\  -f1 | head -n 1)"
-  MATTERMOST_ID="id:$(eesh wl | grep "^0x[[:alnum:]]\+ : .*Mattermost$" | cut -d\  -f1 | head -n 1)"
-  PIDGIN_BUDDYLIST_ID="id:$(eesh "wl" | grep "^0x[[:alnum:]]\+ : Buddy List$" | cut -d\  -f1 | head -n 1)"
+  PAGER_ID="id:$(eesh "wl" | grep "^ *0x[[:alnum:]]\+ : Pager-0$" | grep -o "0x[0-9a-f]\+")"
+  ICONBOX_ID="id:$(eesh "wl" | grep "^ *0x[[:alnum:]]\+ : Iconbox$" | grep -o "0x[0-9a-f]\+")"
+  GKRELLM_ID="id:$(eesh "wl" | grep "^ *0x[[:alnum:]]\+ : gkrellm$" | grep -o "0x[0-9a-f]\+")"
+  THUNDERBIRD_ID="id:$(eesh "wl" | grep "^ *0x[[:alnum:]]\+ : .\+ - Mozilla Thunderbird$" | grep -o "0x[0-9a-f]\+")"
+  FIREFOX_ID="id:$(eesh "wl" | grep "^ *0x[[:alnum:]]\+ : .\+ - Mozilla Firefox$" | grep -o "0x[0-9a-f]\+")"
+  MATTERMOST_ID="id:$(eesh wl | grep -e "^ *0x[[:alnum:]]\+ : .*Framateam$" -e "^0x[[:alnum:]]\+ : .*Mattermost$" | grep -o "0x[0-9a-f]\+")"
 }
 
 area_absolute_to_relative() {
@@ -35,14 +34,14 @@ wop() {
     case $op in
       area)
         sleep 0.2
-        eesh "wop $id area $a $b"
+        eesh wop $id area $a $b
         ;;
       toggle_size)
         sleep 0.2
-        eesh "wop $id toggle_size"
+        eesh wop $id toggle_size
         ;;
       *)
-        eesh "wop $id $op $a $b"
+        eesh wop $id $op $a $b
         ;;
     esac
   fi
@@ -90,7 +89,7 @@ if [ "$EXTRESOLUTION" == "3840x2160" ]; then
   wop $MATTERMOST_ID size 3800 2132
   wop $MATTERMOST_ID move 2558 0
   wop $MATTERMOST_ID toggle_size
-  wop $MATTERMOST_ID area 2 0
+  wop $MATTERMOST_ID area 0 1
 else
 	nmcli radio wifi on
   if [ "$XRANDR" != "no" ]; then
@@ -118,7 +117,7 @@ else
   wop $FIREFOX_ID area 1 0
   wop $MATTERMOST_ID size 2516 1411
   wop $MATTERMOST_ID move 0 0
-  wop $MATTERMOST_ID area 2 0
+  wop $MATTERMOST_ID area 0 1
 fi
 
 exit 0

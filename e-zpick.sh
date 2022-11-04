@@ -1,12 +1,12 @@
 #!/bin/bash
 
 Z=${1:-1}
-POS=$(eesh "warp ?")
+POS=$(eesh warp '?')
 POS_XY=${POS#*: }
 POS_X=${POS_XY% *}
 POS_Y=${POS_XY#* }
 
-for L in $(eesh "wl all" | tr " " "_"); do
+for L in $(eesh wl all | tr " " "_"); do
 	T=${L:1:9}
 	WIN_ID=${T##*_}
 	T=${L:13:5}
@@ -22,5 +22,5 @@ for L in $(eesh "wl all" | tr " " "_"); do
 		WIN_ID_SEL[I++]=$WIN_ID
 	fi
 done
-#eesh "wop ${WIN_ID_SEL[Z]} raise"
-eesh "wop ${WIN_ID_SEL[Z]} focus"
+#eesh wop ${WIN_ID_SEL[Z]} raise
+eesh wop ${WIN_ID_SEL[Z]} focus
